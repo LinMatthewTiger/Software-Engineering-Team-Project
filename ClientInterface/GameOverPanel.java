@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import ClientComm.GameOverControl;
 import Database.GameData;
 import ServerComm.GameClient;
 
@@ -32,7 +33,7 @@ public class GameOverPanel extends JPanel
 	private JLabel player1ScoreValue;
   private JLabel player2ScoreValue;
   
-	public GameOverPanel(GameData data) {
+	public GameOverPanel(GameData data, GameOverControl goc) {
 		
 		this.setSize(new Dimension(752, 501));
 		// keyboard listener related

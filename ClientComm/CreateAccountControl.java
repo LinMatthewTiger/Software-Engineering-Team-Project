@@ -19,7 +19,7 @@ public class CreateAccountControl implements ActionListener
 	  
 	  
 	  // Constructor for the login controller.
-	  public  CreateAccountControl(JPanel container, GameClient client)
+	  public CreateAccountControl(JPanel container, GameClient client)
 	  {
 	    this.container = container;
 	    this.client = client;

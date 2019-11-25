@@ -207,7 +207,6 @@ public class ServerGUI extends JFrame
 		ServerGUI s = new ServerGUI("Server"); // args[0] represents the title of the GUI
 		s.pack();
 		s.setSize(new Dimension(400,500));
-		
 	}
 }
 

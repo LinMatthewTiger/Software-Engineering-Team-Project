@@ -24,6 +24,10 @@ public class GameClient extends AbstractClient
 	public JPanel container;
 	public CardLayout cardLayout;
 	boolean start = true;
+	
+	private String p1Name;
+	private String p2Name;
+	private int numPlayers = 0;
 
 	public GameClient()
 	{
@@ -36,6 +40,7 @@ public class GameClient extends AbstractClient
 		if (arg0 instanceof String) 
 		{
 			String msg = (String)(arg0);
+			
 			if(msg.equals("login successful")) 
 			{
 				loginControl.loginSuccess();
@@ -52,10 +57,24 @@ public class GameClient extends AbstractClient
 			{
 				createAccountControl.createdUser();
 			}
+			else
+			{
+				numPlayers++;
+				if (numPlayers == 1)
+				{
+					p1Name = msg;
+				}
+				else if (numPlayers == 2)
+				{
+					p2Name = msg;
+					numPlayers = 0;
+				}
+			}
 		}
 		else if (arg0 instanceof GameData) 
 		{
 			GameData data = (GameData)arg0;
+			
 			if (start) 
 			{
 				//initialize the game
@@ -75,7 +94,7 @@ public class GameClient extends AbstractClient
 				if(data.timeLeft <= 0) 
 				{
 					//initialize the game
-					JPanel view6 = new GameOverPanel(data);
+					JPanel view6 = new GameOverPanel(data, gameOverControl);
 					gameOver = (GameOverPanel) view6; //client storage of gameclient
 					container.add(view6, "6");
 					cardLayout.show(container, "6");
@@ -95,7 +114,8 @@ public class GameClient extends AbstractClient
 		else if (arg0 instanceof ArrayList)
 		{
 			ArrayList<String> standings = (ArrayList<String>) arg0;
-			
+			gameOverControl.displayStandings(standings, p1Name, p2Name);
+			System.out.println(" ");
 		}
 	}
 

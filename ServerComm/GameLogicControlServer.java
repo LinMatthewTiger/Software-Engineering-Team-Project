@@ -39,21 +39,21 @@ public class GameLogicControlServer
 	{
 		if (player1 == null) 
 		{
+			//Increment the players_size
+			players_size++;
 			//1st client that connects is player 1
 			player1 = client;
 			//Print this info to the server GUI
 			log.append("Player " + players_size + " Connected\n");
-			//Increment the players_size
-			players_size++;
 		} 
 		else 
 		{
+			//Increment the players_size
+			players_size++;
 			//2nd client is player 2
 			player2 = client;
 			//Print this info to the server GUI
 			log.append("Player " + players_size + " Connected\n");
-			//Increment the players_size
-			players_size++;
 		}
 
 		if (player1 != null && player2 != null) 

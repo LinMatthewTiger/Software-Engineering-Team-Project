@@ -7,19 +7,21 @@ import ServerComm.GameClient;
 
 import java.awt.event.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class GameOverControl implements ActionListener
 {
   // Private data fields for the container and chat client.
   private JPanel container;
   private GameClient client;
-  
+  private JTextArea highScores;
   
   // Constructor for the login controller.
-  public GameOverControl(JPanel container, GameClient client)
+  public GameOverControl(JPanel container, JTextArea highScores, GameClient client)
   {
     this.container = container;
     this.client = client;
+    this.highScores = highScores;
     client.setGameOverControl(this);
   }
   
@@ -85,5 +87,22 @@ public class GameOverControl implements ActionListener
 //    LoginPanel loginPanel = (LoginPanel)container.getComponent(1);
 //    loginPanel.setError(error);
     
+  }
+  
+  public void displayStandings(ArrayList<String> standings, String p1, String p2)
+  {
+  	Font font = highScores.getFont();  
+
+  	for (String result : standings)
+  	{
+  		String[] player = result.split(",");
+  		
+  		if (player[0].equals(p1) || player[0].equals(p2))
+  		{
+  			highScores.setFont(font.deriveFont(Font.BOLD));
+    		highScores.append(player[0] + "\t\t" + player[1] + "\n");
+    		highScores.setFont(font.deriveFont(Font.PLAIN));
+  		}
+  	}
   }
 }

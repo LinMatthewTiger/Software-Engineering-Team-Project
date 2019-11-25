@@ -117,6 +117,8 @@ public class GameServer extends AbstractServer
 				try
 				{
 					arg1.sendToClient(standings);
+					arg1.sendToClient(glcs.player1name);
+					arg1.sendToClient(glcs.player2name);
 				} catch (IOException e)
 				{
 					// TODO Auto-generated catch block

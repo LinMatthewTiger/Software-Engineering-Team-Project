@@ -50,10 +50,9 @@ public class Database
 		{
 			executeDML("INSERT INTO client " 
 					+ "VALUES (\"" + data.getUsername() + "\"," 
-					+ "aes_encrypt(\"" + data.getPassword() + "\",\"" + key + "\"));");
+					+ "aes_encrypt(\"" + data.getPassword() + "\",\"" + key + "\"),"
+					+ "NULL);");
 			
-			executeDML("INSERT INTO score " 
-					+ "VALUES (\"" + data.getUsername() + "\",NULL;");
 			return true;
 		} catch (SQLException e)
 		{
@@ -65,7 +64,7 @@ public class Database
 	{
 		try
 		{
-			executeDML("Update score " 
+			executeDML("Update client " 
 					+ "SET score = " + score + " " 
 					+ "WHERE username = \"" + name + "\""
 					+ "AND (score IS NULL OR score < " + score + ");");
@@ -78,7 +77,7 @@ public class Database
 	public ArrayList<String> standings()
 	{
 		ArrayList<String> result = query(
-				"SELECT * FROM score "
+				"SELECT username, score FROM client "
 						+ "ORDER BY score DESC;");
 
 		return result;

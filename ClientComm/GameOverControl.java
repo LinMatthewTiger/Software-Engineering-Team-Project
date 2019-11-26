@@ -17,11 +17,10 @@ public class GameOverControl implements ActionListener
   private JTextArea highScores;
   
   // Constructor for the login controller.
-  public GameOverControl(JPanel container, JTextArea highScores, GameClient client)
+  public GameOverControl(JPanel container, GameClient client)
   {
     this.container = container;
     this.client = client;
-    this.highScores = highScores;
     client.setGameOverControl(this);
   }
   
@@ -89,7 +88,12 @@ public class GameOverControl implements ActionListener
     
   }
   
-  public void displayStandings(ArrayList<String> standings, String p1, String p2)
+  public void setScoreArea (JTextArea scores)
+  {
+  	this.highScores = scores;
+  }
+  
+  public void displayStandings(ArrayList<String> standings)
   {
   	Font font = highScores.getFont();  
 
@@ -97,12 +101,16 @@ public class GameOverControl implements ActionListener
   	{
   		String[] player = result.split(",");
   		
-  		if (player[0].equals(p1) || player[0].equals(p2))
-  		{
-  			highScores.setFont(font.deriveFont(Font.BOLD));
+//  		if (player[0].equals(p1) || player[0].equals(p2))
+//  		{
+//  			highScores.setFont(font.deriveFont(Font.BOLD));
+//    		highScores.append(player[0] + "\t\t" + player[1] + "\n");
+//    		highScores.setFont(font.deriveFont(Font.PLAIN));
+//  		}
+//  		else
+//  		{
     		highScores.append(player[0] + "\t\t" + player[1] + "\n");
-    		highScores.setFont(font.deriveFont(Font.PLAIN));
-  		}
+//  		}
   	}
   }
 }

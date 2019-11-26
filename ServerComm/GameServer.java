@@ -104,6 +104,7 @@ public class GameServer extends AbstractServer
 		if (arg0 instanceof String) 
 		{
 			String msg = (String)arg0;
+			
 			if (msg.startsWith("request results"))
 			{
 				String[] data = msg.split(",");
@@ -114,11 +115,12 @@ public class GameServer extends AbstractServer
 				database.updateScore(p2score, glcs.player2name);
 				
 				ArrayList<String> standings = database.standings();
+				
 				try
 				{
 					arg1.sendToClient(standings);
-					arg1.sendToClient(glcs.player1name);
-					arg1.sendToClient(glcs.player2name);
+//					arg1.sendToClient(glcs.player1name);
+//					arg1.sendToClient(glcs.player2name);
 				} catch (IOException e)
 				{
 					// TODO Auto-generated catch block

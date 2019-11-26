@@ -151,7 +151,7 @@ public class GameLogicControlServer
 			dataToSendToClient.timeLeft--;
 			server.sendToAllClients(dataToSendToClient);
 
-			System.out.print(dataToSendToClient.timeLeft);
+			System.out.print(dataToSendToClient.timeLeft + " ");
 
 			if(dataToSendToClient.timeLeft == 0) 
 			{

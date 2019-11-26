@@ -32,6 +32,7 @@ public class GameOverPanel extends JPanel
 	
 	private JLabel player1ScoreValue;
   private JLabel player2ScoreValue;
+  private JTextArea scoreArea;
   
 	public GameOverPanel(GameData data, GameOverControl goc) {
 		
@@ -53,7 +54,7 @@ public class GameOverPanel extends JPanel
 		scrollPane.setBounds(162, 232, 442, 184);
 		add(scrollPane);
 		
-		JTextArea scoreArea = new JTextArea();
+		scoreArea = new JTextArea();
 		scrollPane.setViewportView(scoreArea);
 		
 		JLabel lblGameOver = new JLabel("Game Over");
@@ -112,6 +113,11 @@ public class GameOverPanel extends JPanel
 //    {
 //      lblPlayer.setText(String.valueOf(data.getPlayer2Score()));
 //    }
+	}
+	
+	public JTextArea getScoreArea()
+	{
+		return scoreArea;
 	}
 }
 

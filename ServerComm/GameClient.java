@@ -78,13 +78,13 @@ public class GameClient extends AbstractClient
 			if (start) 
 			{
 				//initialize the game
-				JPanel view5 = new GamePanelClient(data);
-				gp = (GamePanelClient) view5; //client storage of gameclient
-				container.add(view5, "5");
-				cardLayout.show(container, "5");
+				JPanel view4 = new GamePanelClient(data);
+				gp = (GamePanelClient) view4; //client storage of gameclient
+				container.add(view4, "4");
+				cardLayout.show(container, "4");
 				gp.client = this;
 				start = false;
-				view5.requestFocus();
+				view4.requestFocus();
 			} 
 			else
 			{
@@ -93,12 +93,13 @@ public class GameClient extends AbstractClient
 				
 				if(data.timeLeft <= 0) 
 				{
-					//initialize the game
-					JPanel view6 = new GameOverPanel(data, gameOverControl);
-					gameOver = (GameOverPanel) view6; //client storage of gameclient
-					container.add(view6, "6");
-					cardLayout.show(container, "6");
-					gameOver.client = this;
+					gameOverControl = new GameOverControl(container, this);
+					GameOverPanel view5 = new GameOverPanel(data, gameOverControl);
+					gameOverControl.setScoreArea(view5.getScoreArea());
+					//gameOver = view5; //client storage of gameclient
+					container.add(view5, "5");
+					cardLayout.show(container, "5");
+					view5.client = this;
 					start = false;
 					try
 					{
@@ -114,7 +115,8 @@ public class GameClient extends AbstractClient
 		else if (arg0 instanceof ArrayList)
 		{
 			ArrayList<String> standings = (ArrayList<String>) arg0;
-			gameOverControl.displayStandings(standings, p1Name, p2Name);
+//			gameOverControl.displayStandings(standings, p1Name, p2Name);
+			gameOverControl.displayStandings(standings);
 			System.out.println(" ");
 		}
 	}

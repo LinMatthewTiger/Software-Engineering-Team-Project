@@ -57,19 +57,6 @@ public class GameClient extends AbstractClient
 			{
 				createAccountControl.createdUser();
 			}
-			else
-			{
-				numPlayers++;
-				if (numPlayers == 1)
-				{
-					p1Name = msg;
-				}
-				else if (numPlayers == 2)
-				{
-					p2Name = msg;
-					numPlayers = 0;
-				}
-			}
 		}
 		else if (arg0 instanceof GameData) 
 		{
@@ -95,8 +82,7 @@ public class GameClient extends AbstractClient
 				{
 					gameOverControl = new GameOverControl(container, this);
 					GameOverPanel view5 = new GameOverPanel(data, gameOverControl);
-					gameOverControl.setScoreArea(view5.getScoreArea());
-					//gameOver = view5; //client storage of gameclient
+					gameOverControl.setScoreAreaModel(view5.getScoreAreaModel());
 					container.add(view5, "5");
 					cardLayout.show(container, "5");
 					view5.client = this;
@@ -114,9 +100,8 @@ public class GameClient extends AbstractClient
 		}
 		else if (arg0 instanceof ArrayList)
 		{
-			ArrayList<String> standings = (ArrayList<String>) arg0;
-//			gameOverControl.displayStandings(standings, p1Name, p2Name);
-			gameOverControl.displayStandings(standings);
+			ArrayList<String> res = (ArrayList<String>) arg0;
+			gameOverControl.displayStandings(res);
 			System.out.println(" ");
 		}
 	}

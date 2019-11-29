@@ -104,23 +104,21 @@ public class GameServer extends AbstractServer
 		if (arg0 instanceof String) 
 		{
 			String msg = (String)arg0;
-			
+
 			if (msg.startsWith("request results"))
 			{
 				String[] data = msg.split(",");
 				int p1score = Integer.parseInt(data[1]);
 				int p2score = Integer.parseInt(data[2]);
-				
+
 				database.updateScore(p1score, glcs.player1name);
 				database.updateScore(p2score, glcs.player2name);
-				
+
 				ArrayList<String> standings = database.standings();
 				
 				try
 				{
 					arg1.sendToClient(standings);
-//					arg1.sendToClient(glcs.player1name);
-//					arg1.sendToClient(glcs.player2name);
 				} catch (IOException e)
 				{
 					// TODO Auto-generated catch block
@@ -132,7 +130,7 @@ public class GameServer extends AbstractServer
 				glcs.handleDataFromClient(msg);
 			}
 		}
-		
+
 		else if (arg0 instanceof LoginData)
 		{
 			log.append("Log In info from Client " + arg1.getId() + "\n");
@@ -167,12 +165,12 @@ public class GameServer extends AbstractServer
 				}
 			}
 		}
-		
+
 		else if (arg0 instanceof CreateAccountData)
 		{
 			log.append("Create Account info from Client " + arg1.getId() + "\n");
 			CreateAccountData createData = (CreateAccountData)arg0;
-			
+
 			if (database.addUser(createData))
 			{
 				log.append("Create Account for Client " + arg1.getId() + " successful\n");

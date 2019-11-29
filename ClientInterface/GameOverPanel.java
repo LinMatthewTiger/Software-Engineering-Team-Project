@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 
 import ClientComm.GameOverControl;
 import Database.GameData;
@@ -21,6 +22,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class GameOverPanel extends JPanel 
 {
@@ -32,7 +34,7 @@ public class GameOverPanel extends JPanel
 	
 	private JLabel player1ScoreValue;
   private JLabel player2ScoreValue;
-  private JTextArea scoreArea;
+  private DefaultTableModel model;
   
 	public GameOverPanel(GameData data, GameOverControl goc) {
 		
@@ -49,13 +51,6 @@ public class GameOverPanel extends JPanel
 		JButton btnExitGame = new JButton("Exit Game");
 		btnExitGame.setBounds(431, 428, 117, 29);
 		add(btnExitGame);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(162, 232, 442, 184);
-		add(scrollPane);
-		
-		scoreArea = new JTextArea();
-		scrollPane.setViewportView(scoreArea);
 		
 		JLabel lblGameOver = new JLabel("Game Over");
 		lblGameOver.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
@@ -99,6 +94,16 @@ public class GameOverPanel extends JPanel
     lblHighScore.setBounds(75, 204, 597, 16);
     add(lblHighScore);
     
+    JScrollPane scrollPane = new JScrollPane();
+    scrollPane.setBounds(228, 232, 312, 184);
+    add(scrollPane);
+    
+    model = new DefaultTableModel(); 
+    JTable scoreArea = new JTable(model);
+    model.addColumn("Player");
+    model.addColumn("High Score");
+    scrollPane.setViewportView(scoreArea);
+    
     //update the scores
 //    player1ScoreValue.setText(String.valueOf(data.getPlayer1Score()));
 //    player2ScoreValue.setText(String.valueOf(data.getPlayer2Score()));
@@ -115,9 +120,9 @@ public class GameOverPanel extends JPanel
 //    }
 	}
 	
-	public JTextArea getScoreArea()
+	public DefaultTableModel getScoreAreaModel()
 	{
-		return scoreArea;
+		return model;
 	}
 }
 

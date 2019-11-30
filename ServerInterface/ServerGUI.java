@@ -129,7 +129,18 @@ public class ServerGUI extends JFrame
 		this.add(textAreas, BorderLayout.CENTER);
 		this.add(south, BorderLayout.SOUTH);
 		
-		server = new GameServer();
+		try
+		{
+			server = new GameServer();
+		} catch (IOException e1)
+		{
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1)
+		{
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		db = new Database();
 		try

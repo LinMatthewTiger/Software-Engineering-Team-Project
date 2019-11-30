@@ -39,24 +39,13 @@ public class GameServer extends AbstractServer
 	private ServerGUI gui;
 	private GameLogicControlServer glcs;
 
-	public GameServer() 
+	public GameServer() throws IOException, SQLException
 	{
 		super(8300);
 		glcs = new GameLogicControlServer();
 		glcs.server = this;
 		database = new Database();
-		try
-		{
-			database.setConnection("db.properties");
-		} catch (IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		database.setConnection("db.properties");
 	}
 
 	public GameServer(int port) 
